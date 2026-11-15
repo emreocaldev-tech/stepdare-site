@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Email verified - StepDare</title>
+<meta name="robots" content="noindex">
+<link rel="stylesheet" href="style.css">
+<style>
+  .center { text-align:center; padding-top:40px; }
+  .btn { display:inline-block; margin-top:20px; padding:14px 28px; border-radius:999px; background:var(--ink); color:var(--bg); font-weight:600; text-decoration:none; }
+  .hidden { display:none; }
+</style>
+</head>
+<body>
+<main class="center">
+<h1 id="title">Email verified</h1>
+<p id="message" class="muted">Your email address is confirmed. Open StepDare to continue.</p>
+
+<p id="mobile" class="hidden"><a id="open" class="btn" href="stepdare://auth-callback">Open StepDare</a></p>
+<p id="desktop" class="hidden muted">Open StepDare on your iPhone and sign in with your email and password.</p>
+
+<footer>&copy; 2026 StepDare</footer>
+</main>
+<script>
+(function () {
+  var hash = location.hash || "";
+  var search = location.search || "";
+  var params = new URLSearchParams(search + (hash.indexOf("#") === 0 ? "&" + hash.slice(1) : ""));
+  var failed = params.get("error") || params.get("error_code");
+
+  if (failed) {
+    document.getElementById("title").textContent = "Link expired";
+    document.getElementById("message").textContent =
+      "This link is invalid or has expired. Open StepDare and sign in, or request a new verification email.";
+  }
+
+  var isMobile = /iPhone|iPad|iPod/i.test(navigator.userAgent);
+  if (isMobile && !failed) {
+    // The auth code/tokens are forwarded so the app can finish signing in on this device.
+    var target = "stepdare://auth-callback" + search + hash;
+    document.getElementById("open").setAttribute("href", target);
+    document.getElementById("mobile").classList.remove("hidden");
+    setTimeout(function () { location.href = target; }, 400);
+  } else {
+    document.getElementById("desktop").classList.remove("hidden");
+  }
+})();
+</script>
+</body>
+</html>
