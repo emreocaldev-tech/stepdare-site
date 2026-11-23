@@ -24,6 +24,7 @@
 <li><strong>Game data.</strong> Your pairing with your partner, the daily dare you play, daily results, streaks, badges, coins, and nudges you send each other.</li>
 <li><strong>Custom dares and reports.</strong> The text of custom dares you write. Before a custom dare is saved, its text is checked on our server against a word filter to block abusive content. If you report a custom dare, we store the report and a copy of the dare text so we can review it.</li>
 <li><strong>Push notification token.</strong> If you allow notifications, a device token so we can send game updates (for example, your partner's progress and day results).</li>
+<li><strong>Usage events.</strong> We record a small set of anonymous events about how the app is used (for example, that onboarding, pairing or the Premium screen was reached) to find and fix points where people get stuck. These events use a random identifier created on your device, are not linked to your account, and never include step counts, other Health data, names, email addresses or your partner's information.</li>
 <li><strong>Subscription status.</strong> If you subscribe to StepDare Premium, our subscription provider processes your purchase information (such as your anonymous profile ID and purchase receipt) to tell us whether Premium is active. We never see your payment card details; payments are handled by Apple.</li>
 </ul>
 
@@ -43,9 +44,10 @@
 <ul>
 <li><strong>Supabase</strong> hosts our database and authentication (servers in the United States).</li>
 <li><strong>Adapty</strong> processes subscription purchases and Premium status.</li>
+<li><strong>PostHog</strong> receives the anonymous usage events described above (servers in the United States).</li>
 <li><strong>Apple</strong> provides Sign in with Apple, HealthKit, push notifications (APNs) and payments.</li>
 </ul>
-<p>These providers process data only to deliver their service to us. The app contains no third-party advertising or analytics SDKs.</p>
+<p>These providers process data only to deliver their service to us. The app contains no third-party advertising SDKs and does not track you across other apps or websites.</p>
 
 <h2>Retention and deletion</h2>
 <ul>
